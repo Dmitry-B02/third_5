@@ -21,7 +21,7 @@ class FirstFragment : OptionedFragment() {
         setHasOptionsMenu(true)
         _binding = FragmentFirstBinding.inflate(inflater, container, false)
         val view = binding.root
-        view.findViewById<Button>(R.id.toSecond).setOnClickListener {
+        view.findViewById<Button>(R.id.bnToSecond).setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_firstFragment_to_secondFragment)
         }
         return view
