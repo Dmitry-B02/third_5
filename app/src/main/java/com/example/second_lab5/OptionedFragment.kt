@@ -4,18 +4,14 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.viewbinding.ViewBinding
+import com.example.second_lab5.databinding.FragmentFirstBinding
+import com.example.second_lab5.databinding.FragmentSecondBinding
 import com.example.second_lab5.databinding.FragmentThirdBinding
 
-abstract class OptionedFragment : Fragment() {
-    protected var _binding: ViewBinding? = null
-
-    protected val binding get() = _binding!!
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
-    }
+abstract class OptionedFragment(private val choice: Int) : Fragment() {
+    private lateinit var binding: ViewBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -23,9 +19,36 @@ abstract class OptionedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         setHasOptionsMenu(true)
-        _binding = FragmentThirdBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        binding = if (choice == R.id.firstFragment) {
+            FragmentFirstBinding.inflate(inflater, container, false)
+        } else if (choice == R.id.secondFragment) {
+            FragmentSecondBinding.inflate(inflater, container, false)
+        } else {
+            FragmentThirdBinding.inflate(inflater, container, false)
+        }
+
+        binding.root.findViewById<View>(R.id.bnToFirst2)?.setOnClickListener {
+            findNavController().navigate(R.id.action_secondFragment_to_firstFragment)
+        }
+
+        binding.root.findViewById<View>(R.id.bnToFirst3)?.setOnClickListener {
+            findNavController().navigate(R.id.action_thirdFragment_to_firstFragment)
+        }
+
+        binding.root.findViewById<View>(R.id.bnToSecond1)?.setOnClickListener {
+            findNavController().navigate(R.id.action_firstFragment_to_secondFragment)
+        }
+
+        binding.root.findViewById<View>(R.id.bnToSecond3)?.setOnClickListener {
+            findNavController().navigate(R.id.action_thirdFragment_to_secondFragment)
+        }
+
+        binding.root.findViewById<View>(R.id.bnToThird2)?.setOnClickListener {
+            findNavController().navigate(R.id.action_secondFragment_to_thirdFragment)
+        }
+
+
+        return binding.root
     }
 
 
@@ -35,8 +58,8 @@ abstract class OptionedFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return if (item.itemId == R.id.about_item) {
-            Navigation.findNavController(binding.root).navigate(R.id.global_about)
+        return if (item.itemId == R.id.aboutActivity) {
+            Navigation.findNavController(binding.root).navigate(R.id.aboutActivity)
             true
         } else
             super.onOptionsItemSelected(item)

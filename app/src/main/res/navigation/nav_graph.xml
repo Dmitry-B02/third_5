@@ -45,8 +45,6 @@
             app:popUpTo="@id/firstFragment"
             app:popUpToInclusive="true" />
     </fragment>
-    <action android:id="@+id/global_about"
-        app:destination="@id/aboutActivity"/>
 
     <activity
         android:id="@+id/aboutActivity"
