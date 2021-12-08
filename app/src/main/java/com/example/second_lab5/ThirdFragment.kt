@@ -9,4 +9,24 @@ import androidx.navigation.Navigation
 import com.example.second_lab5.databinding.FragmentThirdBinding
 
 
-class ThirdFragment : OptionedFragment(R.layout.fragment_third)
+class ThirdFragment : OptionedFragment() {
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentThirdBinding.inflate(inflater, container, false)
+        super.onCreateView(inflater, container, savedInstanceState)
+        val view = binding.root
+        view.findViewById<Button>(R.id.bnToFirst).setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_thirdFragment_to_firstFragment)
+        }
+        view.findViewById<Button>(R.id.bnToSecond).setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_thirdFragment_to_secondFragment)
+        }
+        return view
+    }
+
+
+}

@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/bnToFirst3"
+        android:id="@+id/bnToFirst"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
@@ -33,7 +33,7 @@
         app:layout_constraintTop_toBottomOf="@id/activity_name" />
 
     <Button
-        android:id="@+id/bnToSecond3"
+        android:id="@+id/bnToSecond"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
@@ -43,6 +43,6 @@
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/bnToFirst3" />
+        app:layout_constraintTop_toBottomOf="@id/bnToFirst" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
